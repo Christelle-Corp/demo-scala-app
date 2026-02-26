@@ -1,0 +1,10 @@
+*.class
+*.log
+target/
+project/target/
+project/project/
+.bsp/
+.idea/
+*.iml
+.metals/
+.vscode/
