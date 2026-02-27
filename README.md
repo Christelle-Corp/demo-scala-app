@@ -17,16 +17,30 @@ This project includes the following known vulnerabilities:
 
 ## Expected GHAS Behavior
 
-When Dependabot is enabled, it should:
-- Detect vulnerable dependencies listed in `build.sbt`
-- Create security alerts
-- Optionally create automated PRs to update dependencies
+**⚠️ Important:** GitHub Dependabot does not natively support SBT dependency detection. This repository demonstrates the **workaround** using the Dependency Submission API.
 
-## Testing Notes
+### How It Works
+
+1. **GitHub Action** runs on push and weekly schedule
+2. **Parses `build.sbt`** and extracts all dependencies
+3. **Submits to GitHub** via Dependency Submission API
+4. **Populates dependency graph** for Dependabot scanning
+5. **Creates security alerts** for vulnerable dependencies
+
+### Workflow File
+
+See `.github/workflows/dependency-submission.yml` - uses the official Scala Center action:
+- `scalacenter/sbt-dependency-submission@v2`
+- Runs automatically on push and weekly schedule
+- Can be triggered manually via Actions tab
+
+### Testing Notes
 
 - SBT does not generate lock files by default
-- Dependabot parses `build.sbt` directly for dependency detection
-- This tests GHAS support for non-standard build systems
+- Native Dependabot support for SBT is limited/non-existent
+- **This demonstrates the manual workaround process** required for non-standard build systems
+- After the workflow runs, check **Insights > Dependency graph** to verify dependencies appear
+- Dependabot alerts should appear within minutes after dependency submission
 
 ## DO NOT USE IN PRODUCTION
 

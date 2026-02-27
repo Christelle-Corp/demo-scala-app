@@ -1,0 +1,35 @@
+name: SBT Dependency Submission
+
+on:
+  push:
+    branches:
+      - main
+  # Run weekly to catch new vulnerabilities even if code doesn't change
+  schedule:
+    - cron: '0 0 * * 1'  # Every Monday at midnight
+  # Allow manual trigger for testing
+  workflow_dispatch:
+
+jobs:
+  submit-dependencies:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write  # Required to submit dependencies
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Setup JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '11'
+      
+      - name: Submit SBT Dependencies
+        uses: scalacenter/sbt-dependency-submission@v2
+        with:
+          # Optional: specify SBT modules if you have a multi-module project
+          # modules-ignore: 'root scala-app-test'
+          # Optional: specify SBT configurations
+          # configs-ignore: 'scala-tool scala-doc-tool test-internal'
