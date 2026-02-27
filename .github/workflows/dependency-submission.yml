@@ -28,8 +28,7 @@ jobs:
       
       - name: Submit SBT Dependencies
         uses: scalacenter/sbt-dependency-submission@v2
-        with:
-          # Optional: specify SBT modules if you have a multi-module project
-          # modules-ignore: 'root scala-app-test'
-          # Optional: specify SBT configurations
-          # configs-ignore: 'scala-tool scala-doc-tool test-internal'
+        # Optional parameters (uncomment if needed):
+        # with:
+        #   modules-ignore: 'root scala-app-test'
+        #   configs-ignore: 'scala-tool scala-doc-tool test-internal'
