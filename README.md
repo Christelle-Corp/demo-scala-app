@@ -1,6 +1,5 @@
 # Demo Scala App - GHAS Testing
 
-**⚠️ WARNING: This repository contains intentionally vulnerable dependencies for security scanning demonstration purposes.**
 
 ## Purpose
 
@@ -17,7 +16,7 @@ This project includes the following known vulnerabilities:
 
 ## Expected GHAS Behavior
 
-**⚠️ Important:** GitHub Dependabot does not natively support SBT dependency detection. This repository demonstrates the **workaround** using the Dependency Submission API.
+
 
 ### How It Works
 
